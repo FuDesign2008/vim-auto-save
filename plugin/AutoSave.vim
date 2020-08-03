@@ -13,6 +13,10 @@ endif
 let s:save_cpo = &cpo
 set cpo&vim
 
+if !exists('g:auto_save_diable_ale_fix')
+  let g:auto_save_diable_ale_fix = 1
+endif
+
 if !exists("g:auto_save")
   let g:auto_save = 0
 endif
@@ -118,10 +122,22 @@ function s:GetVar(...)
 endfunction
 
 function DoSave()
+  let backup = 'null'
+  if g:auto_save_diable_ale_fix
+    if exists('g:ale_fix_on_save')
+      let backup = g:ale_fix_on_save
+    endif
+    let g:ale_fix_on_save = 0
+  endif
+
   if g:auto_save_write_all_buffers >= 1
     silent! wa
   else
     silent! w
+  endif
+
+  if backup !=# 'null'
+     let g:ale_fix_on_save = backup
   endif
 endfunction
 
