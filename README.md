@@ -11,18 +11,15 @@ mode and when the user leaves insert mode. This configuration is a mix between
 "save as often as possible" and "try to avoid breaking other plugins that depend
 on filewrite-events".
 
-
 # Installation
 
 Use [vundle](https://github.com/gmarik/vundle) or
 download [packaged version](http://www.vim.org/scripts/script.php?script_id=4521)
 from vim.org.
 
-
 # Usage
 
 AutoSave is disabled by default, run `:AutoSaveToggle` to enable/disable it.
-
 
 # Options
 
@@ -73,10 +70,10 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 Other events you may want to use:
 
-- `TextChangedI` will save after a change was made to the text in the current buffer in insert mode.
-- `CursorHold` will save every amount of milliseconds as defined in the `updatetime` option in normal mode.
-- `CursorHoldI` will do the same thing in insert mode.
-- `CompleteDone` will also trigger a save after every completion event.
+-   `TextChangedI` will save after a change was made to the text in the current buffer in insert mode.
+-   `CursorHold` will save every amount of milliseconds as defined in the `updatetime` option in normal mode.
+-   `CursorHoldI` will do the same thing in insert mode.
+-   `CompleteDone` will also trigger a save after every completion event.
 
 Some of these commands may not be available, depending on your Vim installation.
 See the autocommands overview for a complete listing (`:h autocommand-events`).
@@ -120,6 +117,15 @@ option (like `:wa`).
 let g:auto_save_write_all_buffers = 1  " write all open buffers as if you would use :wa
 ```
 
+## Disable ale fix when save
+
+By default `g:ale_fix_on_save` will be set `0` before auto-save, and will be set origin value after auto-save.
+You can trigger ale fix when you save file manually.
+
+```VimL
+" .vimrc
+let g:auto_save_diable_ale_fix = 1  " diable ale fix when auto-save
+```
 
 # Development
 
@@ -127,12 +133,10 @@ The `doc/auto-save.txt` is a converted version of the `README.md`. Don't edit
 it directly. Instead install the [md2vim](https://github.com/FooSoft/md2vim) and
 run the `update_doc_from_readme.sh` script.
 
-
 # Contribution or Bug Report
 
 Development is made in [907th/vim-auto-save](https://github.com/907th/vim-auto-save) repo.
 Please, report any bugs and/or suggestions there. Any contrubution is welcomed!
-
 
 # License
 
